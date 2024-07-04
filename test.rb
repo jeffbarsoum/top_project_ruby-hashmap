@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'hash_map'
 
 test = HashMap.new
@@ -41,14 +43,13 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-
 # Test the other methods of your hash maps
 # to check if they are still working as expected after expanding hash map.
-#get(key)
-#has?(key)
-#remove(key)
-#length
-#clear
-#keys
-#values
-#entries
+# get(key)
+# has?(key)
+# remove(key)
+# length
+# clear
+# keys
+# values
+# entries
