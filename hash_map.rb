@@ -58,7 +58,9 @@ class HashMap
   # takes a key as an argument. If the given key is in the hash map,
   # it should remove the entry with that key and return the deleted entry’s value.
   # If the key isn’t in the hash map, it should return nil.
-  def remove(key); end
+  def remove(key)
+    bucket(key).remove_at(bucket(key).find(key))
+  end
 
   # returns the number of stored keys in the hash map.
   def length
