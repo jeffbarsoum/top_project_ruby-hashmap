@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'node_map'
+require 'node'
 
 # Linked list built from prior assignment,
 # used in our Parent Hash class for both
@@ -24,21 +24,20 @@ class LinkedList
   end
 
   # adds a new node containing value to the end of the list
-  def append(key, value)
-    if head.key && head.value
-      new_tail = NodeMap.new(key, value)
+  def append(value)
+    if head.value
+      new_tail = Node.new(value)
       old_tail = tail
       old_tail.next_node = new_tail
     else
-      head.key = key
       head.value = value
     end
   end
 
   # adds a new node containing value to the start of the list
-  def prepend(key, value)
+  def prepend(value)
     if head.key && head.value
-      new_node = NodeMap.new(key, value, head)
+      new_node = Node.new(value, head)
       self.head = new_node
     else
       head.key = key
@@ -82,16 +81,16 @@ class LinkedList
   end
 
   # returns true if the passed in value is in the list and otherwise returns false.
-  def contains?(key)
-    return true if find(key)
+  def contains?(value)
+    return true if find(value)
 
     false
   end
 
   # returns the index of the node containing value, or nil if not found.
-  def find(key)
+  def find(value)
     size.times do |i|
-      return i if at(i).key == key
+      return i if at(i).value == value
     end
     false
   end
@@ -118,7 +117,7 @@ class LinkedList
   def insert_at(value, index)
     return prepend(value) if index.zero?
 
-    at(index - 1).next_node = NodeMap.new(value, at(index))
+    at(index - 1).next_node = Node.new(value, at(index))
   end
 
   # removes the node at the given index
