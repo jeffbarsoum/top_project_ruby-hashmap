@@ -30,7 +30,9 @@ class HashMap
   # if a key already exists, then the old value is overwritten or we can say that we update the key’s value.
   def set(key, value)
     hashed_key = hash(key)
-    bucket_index = hashed_key % self.capacity
+    bucket_index = hashed_key % capacity
+    raise IndexError if bucket_index.negative? || index >= @buckets.length
+
     @buckets[bucket_index].append(key, value)
     expand
   end
