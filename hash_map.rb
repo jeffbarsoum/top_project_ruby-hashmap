@@ -67,7 +67,13 @@ class HashMap
   def clear; end
 
   # returns an array containing all the keys inside the hash map.
-  def keys; end
+  def keys
+    keys_array = []
+    buckets.each do |bucket|
+      bucket.array.each { |node| keys_array << node.key }
+    end
+    keys_array
+  end
 
   # returns an array containing all the values.
   def values
