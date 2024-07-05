@@ -32,6 +32,19 @@ class HashMap
     hashed_key = hash(key)
     bucket_index = hashed_key % self.capacity
     @buckets[bucket_index].append(key, value)
+    expand
+  end
+
+  def expand
+    growth_threshold = (capacity * load_factor).ceil
+    additional_buckets = keys.length >= growth_threshold ? capacity * (growth_factor - 1) : 0
+
+    return false if additional_buckets.zero?
+
+    additional_buckets.times do |_bucket|
+      @buckets << Node.new
+    end
+    self.capacity = @buckets.length
   end
 
   # takes one argument as a key and returns the value that is assigned to this key. If key is not found, return nil.
