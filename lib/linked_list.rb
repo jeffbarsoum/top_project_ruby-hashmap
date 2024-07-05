@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+require 'node_map'
+
+# Linked list built from prior assignment,
+# used in our Parent Hash class for both
+# HashSet and HashMap
 class LinkedList
   # setters and getters for first and last node in the list
   attr_accessor :head
@@ -21,7 +26,7 @@ class LinkedList
   # adds a new node containing value to the end of the list
   def append(key, value)
     if head.key && head.value
-      new_tail = Node.new(key, value)
+      new_tail = NodeMap.new(key, value)
       old_tail = tail
       old_tail.next_node = new_tail
     else
@@ -33,7 +38,7 @@ class LinkedList
   # adds a new node containing value to the start of the list
   def prepend(key, value)
     if head.key && head.value
-      new_node = Node.new(key, value, head)
+      new_node = NodeMap.new(key, value, head)
       self.head = new_node
     else
       head.key = key
@@ -113,7 +118,7 @@ class LinkedList
   def insert_at(value, index)
     return prepend(value) if index.zero?
 
-    at(index - 1).next_node = Node.new(value, at(index))
+    at(index - 1).next_node = NodeMap.new(value, at(index))
   end
 
   # removes the node at the given index
@@ -128,19 +133,17 @@ class LinkedList
 
     at(index)
   end
-end
+  ####################
+  # Added for HashMap
+  ####################
 
-class Node
-  # setters and getters for "value" and "next_node"
-  attr_accessor :key, :value, :next_node
-
-  def initialize(key = nil, val = nil, nxt_nd = nil)
-    self.key = key
-    self.value = val
-    self.next_node = nxt_nd
-  end
-
-  def to_s
-    value.to_s
+  def array
+    result = []
+    next_pointer = head
+    while next_pointer
+      result << next_pointer
+      next_pointer = next_pointer.next_node
+    end
+    result
   end
 end

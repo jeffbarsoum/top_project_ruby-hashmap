@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'hash_map'
+$LOAD_PATH.unshift('lib')
+
+require 'hash_map'
 
 test = HashMap.new
 
