@@ -74,5 +74,11 @@ class HashMap
 
   # returns an array that contains each key, value pair.
   # Example: [[first_key, first_value], [second_key, second_value]]
-  def entries; end
+  def entries
+    entries_array = []
+    buckets.each do |bucket|
+      bucket.array.each { |node| entries_array << [node.key, node.value] }
+    end
+    entries_array
+  end
 end
