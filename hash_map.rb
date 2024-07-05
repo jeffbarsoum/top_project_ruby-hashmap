@@ -64,7 +64,9 @@ class HashMap
   def length; end
 
   # removes all entries in the hash map.
-  def clear; end
+  def clear
+    initialize
+  end
 
   # returns an array containing all the keys inside the hash map.
   def keys
