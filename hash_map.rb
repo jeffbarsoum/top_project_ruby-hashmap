@@ -7,11 +7,12 @@ require_relative 'linked_lists'
 #
 # raise IndexError if index.negative? || index >= @buckets.length
 class HashMap
-  attr_accessor :capacity, :load_size, :buckets
+  attr_accessor :capacity, :load_factor, :growth_factor, :buckets
 
   def initialize
     self.capacity = 16
-    self.load_size = 0.8
+    self.load_factor = 0.8
+    self.growth_factor = 2
     self.buckets = Array.new(capacity, Node.new)
   end
 
