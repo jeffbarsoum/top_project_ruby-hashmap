@@ -50,7 +50,21 @@ class HashMap
   end
 
   # takes one argument as a key and returns the value that is assigned to this key. If key is not found, return nil.
-  def get(key); end
+  def get(key)
+    bucket(key).at(bucket(key).find(key))
+  end
+
+  def bucket_index(key)
+    hashed_key = hash(key)
+    bucket_index = hashed_key % capacity
+    raise IndexError if bucket_index.negative? || index >= @buckets.length
+
+    bucket_index
+  end
+
+  def bucket(key)
+    buckets[bucket_index(key)]
+  end
 
   # takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
   def has?(key)
