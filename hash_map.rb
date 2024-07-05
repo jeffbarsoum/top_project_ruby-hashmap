@@ -25,7 +25,11 @@ class HashMap
 
   # takes two arguments, the first is a key and the second is a value that is assigned to this key.
   # if a key already exists, then the old value is overwritten or we can say that we update the key’s value.
-  def set(key, value); end
+  def set(key, value)
+    hashed_key = hash(key)
+    bucket_index = hashed_key % self.capacity
+    @buckets[bucket_index].append(key, value)
+  end
 
   # takes one argument as a key and returns the value that is assigned to this key. If key is not found, return nil.
   def get(key); end
