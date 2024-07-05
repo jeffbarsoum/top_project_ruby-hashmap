@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'linked_lists'
+
 # Use the following snippet whenever you access a bucket through an index.
 # We want to raise an error if we try to access an out of bound index:
 #
