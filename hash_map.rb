@@ -61,7 +61,9 @@ class HashMap
   def remove(key); end
 
   # returns the number of stored keys in the hash map.
-  def length; end
+  def length
+    keys.length
+  end
 
   # removes all entries in the hash map.
   def clear
