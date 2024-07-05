@@ -15,6 +15,7 @@ class Hash
     self.capacity = 16
     self.load_factor = 0.8
     self.growth_factor = 2
+    self.buckets = []
   end
 
   # takes a key and produces a hash code with it.
@@ -51,7 +52,7 @@ class Hash
   def bucket_index(key)
     hashed_key = hash(key)
     bucket_index = hashed_key % capacity
-    raise IndexError if bucket_index.negative? || index >= @buckets.length
+    raise IndexError if bucket_index.negative? || bucket_index >= @buckets.length
 
     bucket_index
   end
