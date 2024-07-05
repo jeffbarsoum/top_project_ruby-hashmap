@@ -5,6 +5,14 @@
 #
 # raise IndexError if index.negative? || index >= @buckets.length
 class HashMap
+  attr_accessor :capacity, :load_size, :buckets
+
+  def initialize
+    self.capacity = 16
+    self.load_size = 0.8
+    self.buckets = Array.new(capacity, Node.new)
+  end
+
   # takes a key and produces a hash code with it.
   def hash(key); end
 
