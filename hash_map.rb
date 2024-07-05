@@ -53,7 +53,9 @@ class HashMap
   def get(key); end
 
   # takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
-  def has?(key); end
+  def has?(key)
+    bucket(key).find(key)
+  end
 
   # takes a key as an argument. If the given key is in the hash map,
   # it should remove the entry with that key and return the deleted entry’s value.
