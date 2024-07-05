@@ -70,7 +70,13 @@ class HashMap
   def keys; end
 
   # returns an array containing all the values.
-  def values; end
+  def values
+    values_array = []
+    buckets.each do |bucket|
+      bucket.array.each { |node| values_array << node.value }
+    end
+    values_array
+  end
 
   # returns an array that contains each key, value pair.
   # Example: [[first_key, first_value], [second_key, second_value]]
