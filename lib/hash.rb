@@ -37,7 +37,7 @@ class Hash
     return false if additional_buckets.zero?
 
     additional_buckets.times do |_bucket|
-      @buckets << Node.new
+      @buckets << LinkedList.new(nil)
     end
     self.capacity = @buckets.length
   end
@@ -58,6 +58,8 @@ class Hash
   end
 
   def bucket(key)
+    puts "bucket(#{key} called...)"
+    puts "bucket(#{key}: bucket_index(#{key}) = #{bucket_index(key)}"
     buckets[bucket_index(key)]
   end
 
@@ -87,13 +89,14 @@ class Hash
   def nodes
     nodes_array = []
     buckets.each do |bucket|
-      bucket.array.each { |node| keys_array << node }
+      pointer = bucket.head
+      next if pointer.nil?
+
+      until pointer.nil?
+        nodes_array << pointer
+        pointer = pointer.next_node
+      end
     end
     nodes_array
-  end
-
-  # returns an array containing all the keys inside the hash map.
-  def keys
-    nodes.map(&:key)
   end
 end

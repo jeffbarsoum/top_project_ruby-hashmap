@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require 'hash'
+require 'linked_list'
 
 # Generates unique hashes for keys and stores them in buckets
 class HashSet < Hash
   def initialize
     super
-    self.buckets = Array.new(capacity, NodeSet.new)
+    self.buckets = []
+    capacity.times { |bucket_index| @buckets[bucket_index] = LinkedList.new }
+    puts "buckets after initialization: \n#{buckets}"
   end
 
   # takes two arguments, the first is a key and the second is a value that is assigned to this key.
