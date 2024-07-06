@@ -6,21 +6,8 @@ require 'linked_list'
 # used in our Parent Hash class for both
 # HashSet and HashMap
 class LinkedListMap < LinkedList
-  # setters and getters for first and last node in the list
-  attr_accessor :head
-
-  def initialize(key, value)
-    super([key, value])
-  end
-
-  # adds a new node containing value to the end of the list
-  def append(key, value)
-    super([key, value])
-  end
-
-  # adds a new node containing value to the start of the list
-  def prepend(key, value)
-    super([key, value])
+  def initialize(key = nil, value = nil)
+    super([key, value]) unless key.nil?
   end
 
   # returns the index of the node containing value, or nil if not found.
