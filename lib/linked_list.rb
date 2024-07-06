@@ -9,8 +9,8 @@ class LinkedList
   # setters and getters for first and last node in the list
   attr_accessor :head
 
-  def initialize(value)
-    prepend(value)
+  def initialize(value = nil)
+    prepend(value) unless value.nil?
   end
 
   def tail
@@ -25,24 +25,19 @@ class LinkedList
 
   # adds a new node containing value to the end of the list
   def append(value)
-    if head.value
-      new_tail = Node.new(value)
-      old_tail = tail
-      old_tail.next_node = new_tail
-    else
-      head.value = value
-    end
+    return self.head = Node.new(value) unless head
+
+    new_tail = Node.new(value)
+    old_tail = tail
+    old_tail.next_node = new_tail
   end
 
   # adds a new node containing value to the start of the list
   def prepend(value)
-    if head.key && head.value
-      new_node = Node.new(value, head)
-      self.head = new_node
-    else
-      head.key = key
-      head.value = value
-    end
+    return self.head = Node.new(value) unless head
+
+    new_head = Node.new(value, head)
+    self.head = new_head
   end
 
   # returns the total number of nodes in the list
