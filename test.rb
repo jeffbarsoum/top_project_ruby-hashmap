@@ -19,7 +19,7 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-# should be at full capacity with load factor = 0,75
+puts 'should be at full capacity with load factor = 0,75'
 
 # overwriting a few nodes..
 # this should only over-write the existing values of your nodes and not add new ones.
