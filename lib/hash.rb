@@ -33,15 +33,31 @@ class Hash
   # Checks if our bucket is at load_factor% capacity,
   # and increases capacity by growth_factor% if it does
   def expand
+    is_full = check_capacity
+    return false unless is_full
+
+    self.capacity += is_full
+    new_buckets = Array.new(capacity, nil)
+    nodes.each do |node|
+      bucket_index = bucket_index(node.hash)
+      new_buckets[bucket_index] = linked_list.new.append(node.hash, node.value)
+    end
+    self.buckets = new_buckets
+  end
+
+  def linked_list
+    cls_name = self.class.name.gsub('Hash', 'LinkedList')
+    Object.const_get(cls_name)
+  end
+
+  def check_capacity
     growth_threshold = (capacity * load_factor).ceil
-    additional_buckets = keys.length >= growth_threshold ? capacity * (growth_factor - 1) : 0
+    key_count = keys.length
+    additional_buckets = key_count >= growth_threshold ? capacity * (growth_factor - 1) : 0
 
     return false if additional_buckets.zero?
 
-    additional_buckets.times do |_bucket|
-      @buckets << LinkedList.new(nil)
-    end
-    self.capacity = @buckets.length
+    additional_buckets
   end
 
   # takes one argument as a key and returns the value that is assigned to this key. If key is not found, return nil.
