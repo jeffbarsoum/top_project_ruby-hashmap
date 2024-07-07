@@ -16,6 +16,8 @@ class Hash
     self.load_factor = 0.8
     self.growth_factor = 2
     self.buckets = []
+    capacity.times { |bucket_index| @buckets[bucket_index] = nil }
+    puts "buckets after initialization: \n#{buckets}"
   end
 
   # takes a key and produces a hash code with it.
