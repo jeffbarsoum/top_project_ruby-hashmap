@@ -9,10 +9,6 @@ class LinkedList
   # setters and getters for first and last node in the list
   attr_accessor :head
 
-  def initialize(value = nil)
-    prepend(value) unless value.nil?
-  end
-
   def tail
     next_pointer = head
     while next_pointer
