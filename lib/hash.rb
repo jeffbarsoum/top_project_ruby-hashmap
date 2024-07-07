@@ -43,8 +43,11 @@ class Hash
   end
 
   # takes one argument as a key and returns the value that is assigned to this key. If key is not found, return nil.
-  def get(key)
-    bucket(key).at(bucket(key).find(key))
+  def get(value, type = :key)
+    found = find(value, type)
+    return buckets[found[:buckets_index]].at(found[:bucket_index]) if found
+
+    false
   end
 
   # checks to make sure the index to reference the bucket is for a bucket that exists
@@ -64,15 +67,32 @@ class Hash
   end
 
   # takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
-  def has?(key)
-    bucket(key).find(key)
+  def has?(value, type = :key)
+    return true if find(value, type)
+
+    false
+  end
+
+  def find(value, type = :key)
+    found = nil
+    buckets.length.times do |i|
+      bucket = buckets[i]
+      next unless bucket
+
+      found = bucket.find(value, type)
+      return { buckets_index: i, bucket_index: found } if found
+    end
+    false
   end
 
   # takes a key as an argument. If the given key is in the hash map,
   # it should remove the entry with that key and return the deleted entry’s value.
   # If the key isn’t in the hash map, it should return nil.
-  def remove(key)
-    bucket(key).remove_at(bucket(key).find(key))
+  def remove(value, type = :key)
+    found = find(value, type)
+    return buckets[found[:buckets_index]].remove_at(found[:bucket_index]) if found
+
+    false
   end
 
   # returns the number of stored keys in the hash map.

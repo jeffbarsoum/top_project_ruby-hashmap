@@ -11,9 +11,12 @@ class LinkedListMap < LinkedList
   end
 
   # returns the index of the node containing value, or nil if not found.
-  def find(key)
+  def find(value, type = :key)
     size.times do |i|
-      return i if at(i).value[0] == key
+      list_value = at(i).instance_variable_get(type)
+      return i if type == :key && list_value[0] == value
+      return i if type == :value && list_value[1] == value
+      return i if type == :hash && list_value == value
     end
     false
   end

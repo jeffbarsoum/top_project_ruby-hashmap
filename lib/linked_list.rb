@@ -77,16 +77,17 @@ class LinkedList
   end
 
   # returns true if the passed in value is in the list and otherwise returns false.
-  def contains?(value)
-    return true if find(value)
+  def contains?(value, type = :value)
+    return true if find(value, type)
 
     false
   end
 
   # returns the index of the node containing value, or nil if not found.
-  def find(value)
+  def find(value, type = :value)
     size.times do |i|
-      return i if at(i).value == value
+      list_value = type == :hash? ? at(i).hash : at(i).value[type]
+      return i if list_value == value
     end
     false
   end
