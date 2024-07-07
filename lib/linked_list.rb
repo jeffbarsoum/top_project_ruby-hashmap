@@ -24,19 +24,20 @@ class LinkedList
   end
 
   # adds a new node containing value to the end of the list
-  def append(value)
-    return self.head = Node.new(value) unless head
+  def append(hash, **val)
+    return self.head = Node.new(hash, **val) unless head
 
-    new_tail = Node.new(value)
+    new_tail = Node.new(hash, **val)
     old_tail = tail
     old_tail.next_node = new_tail
   end
 
   # adds a new node containing value to the start of the list
-  def prepend(value)
-    return self.head = Node.new(value) unless head
+  def prepend(hash, **val)
+    return self.head = Node.new(hash, **val) unless head
 
-    new_head = Node.new(value, head)
+    val[:next_node] = head
+    new_head = Node.new(hash, **val)
     self.head = new_head
   end
 
@@ -109,10 +110,11 @@ class LinkedList
   ####################
 
   # inserts a new node with the provided value at the given index.
-  def insert_at(value, index)
-    return prepend(value) if index.zero?
+  def insert_at(hash, index, **val)
+    return prepend(hash, val) if index.zero?
 
-    at(index - 1).next_node = Node.new(value, at(index))
+    val[:next_node] = at(index)
+    at(index - 1).next_node = Node.new(hash, val)
   end
 
   # removes the node at the given index
