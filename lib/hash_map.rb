@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'hash'
-require 'linked_list_map'
 
 # Generates a key: value pair for each key, via NodeMap class
 class HashMap < Hash
