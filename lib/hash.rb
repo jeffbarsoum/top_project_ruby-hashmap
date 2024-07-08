@@ -118,6 +118,8 @@ class Hash
   def find(value, type = :key)
     found = nil
     buckets.length.times do |i|
+      raise IndexError if i.negative? || i >= @buckets.length
+
       bucket = buckets[i]
       next unless bucket
 
