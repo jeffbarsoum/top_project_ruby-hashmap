@@ -36,7 +36,7 @@ class Hash
 
     hash = hash(key)
     bucket = bucket(hash)
-    bucket ||= linked_list.new
+    bucket ||= LinkedList.new
     val = { key:, value: }
     bucket.append(hash, **val)
 
@@ -67,7 +67,7 @@ class Hash
     new_buckets = Array.new(capacity, nil)
     nodes.each do |node|
       bucket_index = bucket_index(node.hash)
-      new_buckets[bucket_index] = linked_list.new
+      new_buckets[bucket_index] = LinkedList.new
       new_buckets[bucket_index].append(node.hash, **node.value)
     end
     puts "buckets expanded: \n#{new_buckets}"
