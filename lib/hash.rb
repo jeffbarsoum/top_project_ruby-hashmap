@@ -152,7 +152,7 @@ class Hash
 
   # removes all entries in the hash map.
   def clear
-    self.buckets = []
+    initialize
   end
 
   # returns an array containing all the nodes inside the hash map.
