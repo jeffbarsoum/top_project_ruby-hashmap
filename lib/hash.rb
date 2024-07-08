@@ -31,7 +31,7 @@ class Hash
   end
 
   def set(key, value = nil)
-    overwritten = overwrite(key, value) if value
+    overwritten = overwrite(key, value)
     return overwritten if overwritten
 
     hash = hash(key)
