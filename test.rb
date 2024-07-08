@@ -22,7 +22,8 @@ test.set('lion', 'golden')
 puts 'should be at full capacity with load factor = 0,75'
 
 # overwriting a few nodes..
-# this should only over-write the existing values of your nodes and not add new ones.
+puts '# overwriting a few nodes..'
+puts 'this should only over-write the existing values of your nodes and not add new ones.'
 test.set('hat', 'yellow')
 test.set('ice cream', 'purple')
 test.set('jacket', 'red')
@@ -33,25 +34,32 @@ test.set('lion', 'black')
 # (doing this will make hash map exceed current load factor,
 # hence expanding buckets and growing hash map)
 #
-# capacity of yash map should drop well below your load factor
+# capacity of hash map should drop well below your load factor
 # should notice that nodes in  hash map are spread much evenly among buckets
+
+puts 'populate hash map with the last node below'
+puts 'capacity of hash map should drop well below your load factor'
 test.set('moon', 'silver')
 
-# overwriting a few nodes..
-# this should only over-write the existing values of your nodes and not add new ones.
+puts '# overwriting a few nodes..'
+puts 'this should only over-write the existing values of your nodes and not add new ones.'
 test.set('hat', 'black')
 test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-# Test the other methods of your hash maps
-# to check if they are still working as expected after expanding hash map.
-# get(key)
-# has?(key)
-# remove(key)
-# length
-# clear
-# keys
-# values
-# entries
+puts 'Test the other methods of your hash maps'
+puts "get(ice cream): #{test.get('ice cream')}"
+puts "has?(hat): #{test.has?('hat')}"
+puts "remove(jacket): #{test.remove('jacket')}"
+puts "length: #{test.length}"
+puts "clear: #{test.clear}"
+test.set('hat', 'black')
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden')
+puts "keys: #{test.keys}"
+puts "values: #{test.values}"
+puts "entries: #{test.entries}"
