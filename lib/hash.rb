@@ -67,8 +67,10 @@ class Hash
     new_buckets = Array.new(capacity, nil)
     nodes.each do |node|
       bucket_index = bucket_index(node.hash)
-      new_buckets[bucket_index] = linked_list.new.append(node.hash, node.value)
+      new_buckets[bucket_index] = linked_list.new
+      new_buckets[bucket_index].append(node.hash, **node.value)
     end
+    puts "buckets expanded: \n#{new_buckets}"
     self.buckets = new_buckets
   end
 
