@@ -7,17 +7,17 @@ require 'linked_list_map'
 class HashMap < Hash
   # returns an array containing all the keys inside the hash map.
   def keys
-    keys = nodes.map { |node| node.value[0] }
+    nodes.map { |node| node.value[:key] }.compact
   end
 
   # returns an array containing all the keys inside the hash map.
   def values
-    nodes.map(&:value[1])
+    nodes.map { |node| node.value[:value] }
   end
 
   # returns an array that contains each key, value pair.
   # Example: [[first_key, first_value], [second_key, second_value]]
   def entries
-    nodes.map { |node| [node.value[0], node.value[1]] }
+    nodes.map { |node| [node.value[:key], node.value[:value]] }
   end
 end
