@@ -159,7 +159,7 @@ class Hash
   def nodes
     nodes_array = []
     buckets.each do |bucket|
-      pointer = bucket.head
+      pointer = bucket.head if bucket
       next if pointer.nil?
 
       until pointer.nil?
