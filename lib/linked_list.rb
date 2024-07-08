@@ -88,24 +88,6 @@ class LinkedList
     false
   end
 
-  # represent your LinkedList objects as strings,
-  # so you can print them out and preview them in the console.
-  #
-  # The format should be: ( value ) -> ( value ) -> ( value ) -> nil
-  def to_s
-    str = ''
-    size.times do |i|
-      str += "( #{at(i)} )"
-      str += ' -> '
-    end
-    str += 'nil'
-    str
-  end
-
-  ####################
-  # Extra Credit
-  ####################
-
   # inserts a new node with the provided value at the given index.
   def insert_at(hash, index, **val)
     return prepend(hash, val) if index.zero?
@@ -126,9 +108,6 @@ class LinkedList
 
     at(index)
   end
-  ####################
-  # Added for HashMap
-  ####################
 
   def array
     result = []
@@ -138,5 +117,19 @@ class LinkedList
       next_pointer = next_pointer.next_node
     end
     result
+  end
+
+  # represent your LinkedList objects as strings,
+  # so you can print them out and preview them in the console.
+  #
+  # The format should be: ( value ) -> ( value ) -> ( value ) -> nil
+  def to_s
+    str = ''
+    size.times do |i|
+      str += "( #{at(i)} )"
+      str += ' -> '
+    end
+    str += 'nil'
+    str
   end
 end
