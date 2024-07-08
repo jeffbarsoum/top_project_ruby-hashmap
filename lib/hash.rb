@@ -82,7 +82,7 @@ class Hash
   def check_capacity
     growth_threshold = (capacity * load_factor).ceil
     key_count = keys.length
-    additional_buckets = key_count >= growth_threshold ? capacity * (growth_factor - 1) : 0
+    additional_buckets = key_count > growth_threshold ? capacity * (growth_factor - 1) : 0
 
     return false if additional_buckets.zero?
 
