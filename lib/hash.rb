@@ -30,6 +30,33 @@ class Hash
     hash_code
   end
 
+  def set(key, value = nil)
+    overwritten = overwrite(key, value) if value
+    return overwritten if overwritten
+
+    hash = hash(key)
+    bucket = bucket(hash)
+    bucket ||= linked_list.new
+    val = { key:, value: }
+    bucket.append(hash, **val)
+
+    @buckets[check_index(bucket_index(hash))] ||= bucket
+    puts "buckets after appending hash: #{hash}, value_hash: #{val}:\n#{buckets}"
+    expand if check_capacity
+  end
+
+  def overwrite(key, value)
+    found = find(key)
+    if found
+      node = buckets[found[:buckets_index]].at(found[:bucket_index])
+      puts "Overwite [ #{node.value[:key]}, #{node.value[:value]} ] with [ #{key}, #{value} ]"
+      node.value[:value] = value
+      puts "Overwitten value: [ #{node.value[:key]}, #{node.value[:value]} ]"
+      return { key: node.value[:key], value: node.value[:value] }
+    end
+    false
+  end
+
   # Checks if our bucket is at load_factor% capacity,
   # and increases capacity by growth_factor% if it does
   def expand
