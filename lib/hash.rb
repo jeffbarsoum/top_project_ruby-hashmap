@@ -99,18 +99,13 @@ class Hash
 
   # checks to make sure the index to reference the bucket is for a bucket that exists
   # per the assignment, an error is raised if it's not
-  def bucket_index(key)
-    hashed_key = hash(key)
-    bucket_index = hashed_key % capacity
-    raise IndexError if bucket_index.negative? || bucket_index >= @buckets.length
-
-    bucket_index
+  def bucket_index(hash)
+    hash % capacity
   end
 
-  def bucket(key)
-    puts "bucket(#{key} called...)"
-    puts "bucket(#{key}: bucket_index(#{key}) = #{bucket_index(key)}"
-    buckets[bucket_index(key)]
+  def bucket(hash)
+    puts "bucket(#{hash}: bucket_index(#{hash}) = #{bucket_index(hash)}"
+    buckets[bucket_index(hash)]
   end
 
   # takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
