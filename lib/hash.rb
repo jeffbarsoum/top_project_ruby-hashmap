@@ -139,6 +139,12 @@ class Hash
     false
   end
 
+  def check_index(index)
+    raise IndexError if index.negative? || index >= @buckets.length
+
+    index
+  end
+
   # returns the number of stored keys in the hash map.
   def length
     keys.length
